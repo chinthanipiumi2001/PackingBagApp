@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.example.packingbagapp.Adapter.Adapter;
 import com.example.packingbagapp.Constance.MyConstants;
@@ -36,9 +37,15 @@ public class MainActivity extends AppCompatActivity {
 
     private static final int TIME_INTERVAL = 2000;
 
-    private long nBackPressed;
+    private long mBackPressed;
         public void onBackPressed(){
-            super.onBackPressed();
+            if(mBackPressed+TIME_INTERVAL>System.currentTimeMillis()){
+                super.onBackPressed();
+                return;
+            }else {
+                Toast.makeText(this, "Tap back button in order to exit.", Toast.LENGTH_SHORT).show();
+            }
+            mBackPressed = System.currentTimeMillis();
         }
 
     private void addAddTitles() {
