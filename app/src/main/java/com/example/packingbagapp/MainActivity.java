@@ -22,9 +22,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
     }
-    private void addAddTitles(){
+
+    private void addAddTitles() {
         titles = new ArrayList<>();
         titles.add(MyConstants.BASIC_NEEDS_CAMEL_CASE);
         titles.add(MyConstants.CLOTHING_CAMEL_CASE);
@@ -39,6 +39,22 @@ public class MainActivity extends AppCompatActivity {
         titles.add(MyConstants.MY_LIST_CAMEL_CASE);
         titles.add(MyConstants.MY_SELECTIONS_CAMEL_CASE);
 
+
+    }
+    private void addAllImages(){
+        images=new ArrayList<>();
+        images.add(R.drawable.p1);
+        images.add(R.drawable.p2);
+        images.add(R.drawable.p3);
+        images.add(R.drawable.p4);
+        images.add(R.drawable.p5);
+        images.add(R.drawable.p6);
+        images.add(R.drawable.p7);
+        images.add(R.drawable.p8);
+        images.add(R.drawable.p9);
+        images.add(R.drawable.p10);
+        images.add(R.drawable.p11);
+        images.add(R.drawable.p12);
 
     }
 }
