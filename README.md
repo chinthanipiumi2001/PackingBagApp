@@ -1,4 +1,4 @@
-# Create a packing bag app || Using Android studio Java  
+# Pack your bag app || complete project || Using Android studio Java  
 The "Pack Bag" app is a versatile mobile application designed to simplify and streamline the packing process for travelers. This app utilizes intuitive features and smart functionalities to assist users in efficiently organizing their belongings for trips, whether for leisure, business, or any other purpose.
 
 Key Features:
