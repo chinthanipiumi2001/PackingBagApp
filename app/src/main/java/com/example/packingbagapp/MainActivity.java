@@ -1,6 +1,7 @@
 package com.example.packingbagapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -22,7 +23,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        recyclerView = findViewById(R.id.recyclerView);
+
+        addAddTitles();
+        addAllImages();
+
+        adapter = new Adapter(this,titles,images,MainActivity.this);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this,2,GridLayoutManager.VERTICAL,false);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(adapter);
     }
+
+    private static final int TIME_INTERVAL = 2000;
+
+    private long nBackPressed;
+        public void onBackPressed(){
+            super.onBackPressed();
+        }
 
     private void addAddTitles() {
         titles = new ArrayList<>();
