@@ -27,10 +27,56 @@ public class Items implements Serializable {
     public Items(){
 
     }
+    public Items(String itemname,String category,Boolean checked){
+        this.addedby = "system";
+        this. itemname = itemname;
+        this.category = category;
+        this.checked = checked;
+    }
     public Items(String itemname,String category,String addedby,Boolean checked){
         this.itemname = itemname;
         this.category = category;
         this.addedby = addedby;
+        this.checked = checked;
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public String getItemname() {
+        return itemname;
+    }
+
+    public void setItemname(String itemname) {
+        this.itemname = itemname;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public String getAddedby() {
+        return addedby;
+    }
+
+    public void setAddedby(String addedby) {
+        this.addedby = addedby;
+    }
+
+    public Boolean getChecked() {
+        return checked;
+    }
+
+    public void setChecked(Boolean checked) {
         this.checked = checked;
     }
 }
