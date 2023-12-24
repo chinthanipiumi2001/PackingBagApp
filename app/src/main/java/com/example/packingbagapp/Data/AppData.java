@@ -104,5 +104,11 @@ public class AppData extends Application {
     }
     public void persistAllData(){
         List<List<Items>>listofAllItems = getAllData();
+        for(List<Items>list:listofAllItems){
+            for(Items items:list){
+                database.mainDao().saveItem(items, REPLASE, REPLASE);
+            }
+        }
+        System.out.println("Data added.");
     }
 }
