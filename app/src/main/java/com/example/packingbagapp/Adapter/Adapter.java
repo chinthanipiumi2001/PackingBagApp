@@ -51,6 +51,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.myViewHolder> {
                 //Toast.makeText(activity, "Clicked on card.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(view.getContext(), CheckList.class);
                 intent.putExtra(MyConstants.HEADER_SMALL,titles.get(position));
+                if(MyConstants.MY_SELECTIONS.equals(titles.get(position))){
+                    intent.putExtra(MyConstants.SHOW_SMALL,MyConstants.FALSE_STRING);
+                    intent.putExtra("Show","false");
+                }else {
+                    intent.putExtra(MyConstants.SHOW_SMALL,MyConstants.TRUE_STRING);
+                }
+                view.getContext().startActivity(intent);
             }
         });
 
