@@ -12,5 +12,22 @@
         android:layout_height="match_parent"
         android:id="@+id/recyclerView"
         android:layout_marginTop="60dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:id = "@+id/linerarLayout"
+        android:background="#FFD6D6">
+        
+        <EditText
+            android:layout_width="0dp"
+            android:layout_weight="5"
+            android:layout_height="wrap_content"
+            android:hint="Enter item to add...."
+            android:textSize="22sp"
+            android:layout_marginLeft="8dp"
+            android:textStyle="bold|italic"/>
+    </LinearLayout>
 
 </RelativeLayout>
