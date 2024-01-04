@@ -1,6 +1,7 @@
 package com.example.packingbagapp.Adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,8 +52,24 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListViewHolder> 
 
         if(MyConstants.FALSE_STRING.equals(show)){
             holder.btnDelete.setVisibility(View.GONE);
+            holder.layout.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_one));
 
+        }else{
+            if (itemsList.get(position).getChecked()){
+                holder.layout.setBackgroundColor(Color.parseColor("8e546f"));
+            }else
+                holder.layout.setBackgroundDrawable(context.getResources().getDrawable(R.drawable.border_one));
         }
+        holder.checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Boolean check = holder.checkBox.isChecked();
+                database.mainDao().checkUncheck(itemsList.get(position).getID(),check);
+                if(MyConstants.FALSE_STRING.equals(show)){
+                    itemsList = database.mainDao().getAllSelected(true);
+                }
+            }
+        });
 
     }
 
