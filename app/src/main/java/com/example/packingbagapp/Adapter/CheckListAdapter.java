@@ -67,7 +67,28 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListViewHolder> 
                 database.mainDao().checkUncheck(itemsList.get(position).getID(),check);
                 if(MyConstants.FALSE_STRING.equals(show)){
                     itemsList = database.mainDao().getAllSelected(true);
+                    notifyDataSetChanged();
                 }
+                else {
+                    itemsList.get(position).setChecked(check);
+                    notifyDataSetChanged();
+                    Toast tostMessage = null;
+                    if(tostMessage!=null){
+                        tostMessage.cancel();
+                    }
+                    if(itemsList.get(position).getChecked()){
+                        tostMessage = Toast.makeText(context,"("+holder.checkBox.getText()+")Packed",Toast.LENGTH_SHORT);
+                    }else{
+                        tostMessage = Toast.makeText(context,"("+holder.checkBox.getText()+")Un-Packed",Toast.LENGTH_SHORT);
+                    }
+                    tostMessage.show();
+                }
+            }
+        });
+        holder.btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 
