@@ -1,6 +1,8 @@
 package com.example.packingbagapp.Adapter;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -88,6 +90,23 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListViewHolder> 
         holder.btnDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                new AlertDialog.Builder(context)
+                        .setTitle("Delete( "+itemsList.get(position).getItemname()+")")
+                        .setMessage("Are you sure")
+                        .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                database.mainDao().delete(itemsList.get(position));
+                                itemsList.remove(itemsList.get(position));
+                                notifyDataSetChanged();
+                            }
+                        }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+
+                            }
+                        }).setIcon(R.drawable.baseline_delete_forever_24)
+                        .show();
 
             }
         });
