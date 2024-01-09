@@ -103,6 +103,7 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListViewHolder> 
                         }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                Toast.makeText(context,"Cancelled",Toast.LENGTH_SHORT).show();
 
                             }
                         }).setIcon(R.drawable.baseline_delete_forever_24)
