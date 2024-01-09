@@ -40,6 +40,9 @@ public class CheckList extends AppCompatActivity {
 
         Intent intent = getIntent();
         header = intent.getStringExtra(MyConstants.HEADER_SMALL);
+        show = intent.getStringExtra(MyConstants.SHOW_SMALL);
+
+        getSupportActionBar().setTitle(header);
     }
     private void addNewItems(String itemsList){
         Items item = new Items();
