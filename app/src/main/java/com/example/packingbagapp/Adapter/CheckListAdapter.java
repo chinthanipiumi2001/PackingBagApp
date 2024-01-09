@@ -15,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.packingbagapp.CheckList;
 import com.example.packingbagapp.Constance.MyConstants;
 import com.example.packingbagapp.Database.RoomDB;
 import com.example.packingbagapp.Models.Items;
@@ -29,7 +30,7 @@ public class CheckListAdapter extends RecyclerView.Adapter<CheckListViewHolder> 
     RoomDB database;
     String show;
 
-    public CheckListAdapter() {
+    public CheckListAdapter(CheckList context, String itemsList, RoomDB database, String show) {
     }
 
     public CheckListAdapter(Context context, List<Items> itemsList, RoomDB database, String show) {
