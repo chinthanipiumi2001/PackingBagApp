@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -43,6 +44,20 @@ public class CheckList extends AppCompatActivity {
         show = intent.getStringExtra(MyConstants.SHOW_SMALL);
 
         getSupportActionBar().setTitle(header);
+
+        textAdd = findViewById(R.id.txtAdd);
+        btnAdd = findViewById(R.id.btnAdd);
+        recyclerView = findViewById(R.id.recyclerView);
+        linearLayout = findViewById(R.id.linerarLayout);
+
+        database = RoomDB.getInstance(this);
+
+        if(MyConstants.FALSE_STRING.equals(show)){
+            linearLayout.setVisibility(View.GONE);
+            itemsList = database.mainDao().getAllSelected(true);
+        }
+
+        
     }
     private void addNewItems(String itemsList){
         Items item = new Items();
