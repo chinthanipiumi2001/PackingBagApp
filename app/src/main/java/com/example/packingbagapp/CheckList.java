@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.example.packingbagapp.Adapter.CheckListAdapter;
 import com.example.packingbagapp.Constance.MyConstants;
@@ -55,19 +56,43 @@ public class CheckList extends AppCompatActivity {
         if(MyConstants.FALSE_STRING.equals(show)){
             linearLayout.setVisibility(View.GONE);
             itemsList = database.mainDao().getAllSelected(true);
+        }else{
+            itemsList = database.mainDao().getAll(header);
         }
 
-        
+        updateRecycler(itemsList.toString());
+
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String itemName = textAdd.getText().toString();
+                if(itemName!=null && !itemName.isEmpty()){
+                    addNewItems(itemName);
+                    Toast.makeText(CheckList.this, "item Added", Toast.LENGTH_SHORT).show();
+                }else {
+                    Toast.makeText(CheckList.this,"Empty can't be added ",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
     }
-    private void addNewItems(String itemsList){
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+
+    private void addNewItems(String itemName){
         Items item = new Items();
         item.setChecked(false);
         item.setCategory(header);
-        item.setItemname(itemsList);
+        item.setItemname(itemName);
         item.setAddedby(MyConstants.USER_SMALL);
         database.mainDao().saveItem(item);
-        updateRecycler(itemsList);
-        recyclerView.scrollToPosition(checkListAdapter.getItemCount()-1);
+        itemsList = database.mainDao().getAll(header);
+        updateRecycler(itemsList.toString());
+        recyclerView.scrollToPosition(checkListAdapter.getItemCount() -1);
         textAdd.setText("");
     }
     private void updateRecycler(String itemsList){
