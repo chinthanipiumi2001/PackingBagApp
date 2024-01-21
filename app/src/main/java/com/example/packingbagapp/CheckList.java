@@ -1,21 +1,28 @@
 package com.example.packingbagapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.example.packingbagapp.Adapter.CheckListAdapter;
 import com.example.packingbagapp.Constance.MyConstants;
 import com.example.packingbagapp.Database.RoomDB;
 import com.example.packingbagapp.Models.Items;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +38,47 @@ public class CheckList extends AppCompatActivity {
     EditText textAdd;
     Button btnAdd;
     LinearLayout linearLayout;
+
+    @Override
+    public boolean onCreatePanelMenu(int featureId, @NonNull Menu menu){
+
+        MenuInflater inflater =getMenuInflater();
+        inflater.inflate(R.menu.menu_one,menu);
+
+        if(MyConstants.MY_SELECTIONS.equals(header)){
+
+
+            menu.getItem(0).setVisible(false);
+            menu.getItem(2).setVisible(false);
+            menu.getItem(3).setVisible(false);
+
+        }else if(MyConstants.MY_LIST_CAMEL_CASE.equals(header))
+            menu.getItem(1).setVisible(false);
+
+        MenuItem menuItem = menu.findItem(R.id.btnSearch);
+        SearchView searchView =(SearchView) menuItem.getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                List<Items>mfinalList = new ArrayList<>();
+                for(Items items:itemsList){
+                    String newText = null;
+                    if(items.getItemname().toLowerCase().startsWith(newText.toLowerCase())){
+                        mfinalList.add(items);
+                    }
+                }
+                return false;
+            }
+        });
+
+            return true;
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -115,6 +115,17 @@ public class AppData extends Application {
 
      public void persistDataByCategory(String category,Boolean onlyDelete){
         try{
+            List<Items> list = deleteAndGetListByCatergory(category, onlyDelete);{
+                if (!onlyDelete){
+                    for(Items items : list){
+                        database.mainDao().saveItem(items);
+                    }
+                    Toast.makeText(this,category +" Reset Successfully.",Toast.LENGTH_SHORT).show();
+
+                }else{
+                    Toast.makeText(this,category +" Reset Successfully.",Toast.LENGTH_SHORT).show();
+                }
+            }
 
         }catch (Exception ex){
             ex.printStackTrace();
