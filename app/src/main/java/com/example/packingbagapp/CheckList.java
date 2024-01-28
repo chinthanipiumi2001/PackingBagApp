@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.example.packingbagapp.Adapter.CheckListAdapter;
 import com.example.packingbagapp.Constance.MyConstants;
+import com.example.packingbagapp.Data.AppData;
 import com.example.packingbagapp.Database.RoomDB;
 import com.example.packingbagapp.Models.Items;
 
@@ -40,23 +41,23 @@ public class CheckList extends AppCompatActivity {
     LinearLayout linearLayout;
 
     @Override
-    public boolean onCreatePanelMenu(int featureId, @NonNull Menu menu){
+    public boolean onCreatePanelMenu(int featureId, @NonNull Menu menu) {
 
-        MenuInflater inflater =getMenuInflater();
-        inflater.inflate(R.menu.menu_one,menu);
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_one, menu);
 
-        if(MyConstants.MY_SELECTIONS.equals(header)){
+        if (MyConstants.MY_SELECTIONS.equals(header)) {
 
 
             menu.getItem(0).setVisible(false);
             menu.getItem(2).setVisible(false);
             menu.getItem(3).setVisible(false);
 
-        }else if(MyConstants.MY_LIST_CAMEL_CASE.equals(header))
+        } else if (MyConstants.MY_LIST_CAMEL_CASE.equals(header))
             menu.getItem(1).setVisible(false);
 
         MenuItem menuItem = menu.findItem(R.id.btnSearch);
-        SearchView searchView =(SearchView) menuItem.getActionView();
+        SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
@@ -65,18 +66,26 @@ public class CheckList extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String s) {
-                List<Items>mfinalList = new ArrayList<>();
-                for(Items items:itemsList){
+                List<Items> mfinalList = new ArrayList<>();
+                for (Items items : itemsList) {
                     String newText = null;
-                    if(items.getItemname().toLowerCase().startsWith(newText.toLowerCase())){
+                    if (items.getItemname().toLowerCase().startsWith(newText.toLowerCase())) {
                         mfinalList.add(items);
                     }
                 }
+                updateRecycler(mfinalList.toString());
                 return false;
             }
         });
 
-            return true;
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item){
+
+        Intent intent = new Intent(this, CheckList.class);
+        AppData appData = new AppData(database,this);
+        return super.onOptionsItemSelected(item);
     }
 
 
